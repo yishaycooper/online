@@ -3,73 +3,63 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tabbed Course List with Links</title>
+    <title>Dropdown Course List with Links</title>
     <style>
       body {
         font-family: Arial, sans-serif;
         margin: 0;
-        padding: 0;
-      }
-      .tabs {
-        display: flex;
-        background-color: #333;
-      }
-      .tab {
-        flex: 1;
-        padding: 10px 20px;
-        color: white;
-        cursor: pointer;
-        text-align: center;
-        border-bottom: 2px solid transparent;
-      }
-      .tab:hover {
-        background-color: #555;
-      }
-      .active {
-        border-bottom: 2px solid #ff9900;
-        background-color: #444;
-      }
-      .content {
         padding: 20px;
-        display: none;
+        background-color: #f5f5f5;
       }
-      .content.active {
-        display: block;
+
+      h2 {
+        margin-top: 20px;
       }
+
+      select {
+        padding: 10px;
+        font-size: 16px;
+        width: 100%;
+        max-width: 300px;
+        margin-bottom: 20px;
+      }
+
       ul {
         padding-left: 20px;
+        list-style-type: disc;
       }
+
       li {
         margin-bottom: 5px;
       }
+
       a {
         color: #007bff;
         text-decoration: none;
       }
+
       a:hover {
         text-decoration: underline;
       }
     </style>
   </head>
   <body>
-    <!-- Tabs -->
-    <div class="tabs">
-      <div class="tab active" onclick="showContent('programming')">
-        Programming
-      </div>
-      <div class="tab" onclick="showContent('android')">Android</div>
-      <div class="tab" onclick="showContent('self-improvement')">
-        Self Improvement
-      </div>
-    </div>
+    <h1>Select a Category to View Courses</h1>
+
+    <!-- Dropdown Menu -->
+    <select id="category-select" onchange="showContent(this.value)">
+      <option value="programming">Programming</option>
+      <option value="android">Android</option>
+      <option value="self-improvement">Self Improvement</option>
+    </select>
 
     <!-- Content Container -->
-    <div id="content-container" class="content active">
+    <div id="content-container">
       <h2>Programming Courses</h2>
       <ul id="course-list"></ul>
     </div>
 
-    <!-- JavaScript to handle tab switching and course display with links -->
+    <!-- JavaScript to handle dropdown selection and course display with links -->
     <script>
       // Course data with links
       const courses = {
@@ -80,63 +70,57 @@
           },
           {
             name: "Advanced Python Techniques",
-            url: "https://www.facebook.com/reel/8411547935616684/?sfnsn=wa&mibextid=6AJuK9",
+            url: "https://www.facebook.com/reel/8411547935616684",
           },
           {
             name: "Web Development with React",
-            url: "https://www.facebook.com/reel/8411547935616684/?sfnsn=wa&mibextid=6AJuK9",
+            url: "https://www.facebook.com/reel/8411547935616684",
           },
           {
             name: "Data Structures & Algorithms",
-            url: "https://www.facebook.com/reel/8411547935616684/?sfnsn=wa&mibextid=6AJuK9",
+            url: "https://www.facebook.com/reel/8411547935616684",
           },
         ],
         android: [
           {
             name: "Building Android Apps with Kotlin",
-            url: "https://www.facebook.com/reel/8411547935616684/?sfnsn=wa&mibextid=6AJuK9",
+            url: "https://www.facebook.com/reel/8411547935616684",
           },
           {
             name: "Mastering Android Studio",
-            url: "https://www.facebook.com/reel/8411547935616684/?sfnsn=wa&mibextid=6AJuK9",
+            url: "https://www.facebook.com/reel/8411547935616684",
           },
           {
             name: "UI/UX Design for Android",
-            url: "https://www.facebook.com/reel/8411547935616684/?sfnsn=wa&mibextid=6AJuK9",
+            url: "https://www.facebook.com/reel/8411547935616684",
           },
           {
             name: "Integrating APIs in Android",
-            url: "https://www.facebook.com/reel/8411547935616684/?sfnsn=wa&mibextid=6AJuK9",
+            url: "https://www.facebook.com/reel/8411547935616684",
           },
         ],
         "self-improvement": [
           {
             name: "Self Worth",
-            url: "https://www.facebook.com/reel/8411547935616684/?sfnsn=wa&mibextid=6AJuK9",
+            url: "https://www.facebook.com/reel/8411547935616684",
           },
           {
             name: "Productivity Hacks",
-            url: "https://www.facebook.com/reel/8411547935616684/?sfnsn=wa&mibextid=6AJuK9",
+            url: "https://www.facebook.com/reel/8411547935616684",
           },
           {
             name: "Building Healthy Habits",
-            url: "https://www.facebook.com/reel/8411547935616684/?sfnsn=wa&mibextid=6AJuK9",
+            url: "https://www.facebook.com/reel/8411547935616684",
           },
           {
             name: "Mindfulness & Meditation",
-            url: "https://www.facebook.com/reel/8411547935616684/?sfnsn=wa&mibextid=6AJuK9",
+            url: "https://www.facebook.com/reel/8411547935616684",
           },
         ],
       };
 
       // Function to show the appropriate content and course list with links
       function showContent(category) {
-        // Update active tab
-        document
-          .querySelectorAll(".tab")
-          .forEach((tab) => tab.classList.remove("active"));
-        event.currentTarget.classList.add("active");
-
         // Update content heading
         const contentContainer = document.getElementById("content-container");
         contentContainer.querySelector("h2").textContent =
@@ -154,15 +138,9 @@
           li.appendChild(link);
           courseList.appendChild(li);
         });
-
-        // Display the content container
-        document
-          .querySelectorAll(".content")
-          .forEach((content) => content.classList.remove("active"));
-        contentContainer.classList.add("active");
       }
 
-      // Initial load
+      // Initial load with the default category
       showContent("programming");
     </script>
   </body>
