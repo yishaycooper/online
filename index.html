@@ -3,10 +3,87 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hello World</title>
+    <title>Tabbed Page</title>
+    <style>
+      /* Basic styling */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      .tabs {
+        display: flex;
+        background-color: #333;
+      }
+      .tab {
+        flex: 1;
+        padding: 10px 20px;
+        color: white;
+        cursor: pointer;
+        text-align: center;
+        border-bottom: 2px solid transparent;
+      }
+      .tab:hover {
+        background-color: #555;
+      }
+      .active {
+        border-bottom: 2px solid #ff9900;
+        background-color: #444;
+      }
+      .content {
+        padding: 20px;
+        display: none;
+      }
+      .content.active {
+        display: block;
+      }
+    </style>
   </head>
   <body>
-    <h1>Hello World!</h1>
-    <p>Welcome to my first HTML page.</p>
+    <!-- Tabs -->
+    <div class="tabs">
+      <div class="tab active" onclick="showContent('programming')">
+        Programming
+      </div>
+      <div class="tab" onclick="showContent('android')">Android</div>
+      <div class="tab" onclick="showContent('self-improvement')">
+        Self Improvement
+      </div>
+    </div>
+
+    <!-- Content Sections -->
+    <div id="programming" class="content active">
+      <h2>Programming</h2>
+      <p>Learn the latest programming languages and techniques.</p>
+    </div>
+
+    <div id="android" class="content">
+      <h2>Android</h2>
+      <p>Build amazing Android apps and master mobile development.</p>
+    </div>
+
+    <div id="self-improvement" class="content">
+      <h2>Self Improvement</h2>
+      <p>Enhance your productivity, mindset, and personal growth.</p>
+    </div>
+
+    <!-- JavaScript to handle tab switching -->
+    <script>
+      function showContent(id) {
+        // Hide all content sections
+        document
+          .querySelectorAll(".content")
+          .forEach((content) => content.classList.remove("active"));
+
+        // Remove active class from all tabs
+        document
+          .querySelectorAll(".tab")
+          .forEach((tab) => tab.classList.remove("active"));
+
+        // Show the selected content and set the active tab
+        document.getElementById(id).classList.add("active");
+        event.currentTarget.classList.add("active");
+      }
+    </script>
   </body>
 </html>
