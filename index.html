@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tabbed Course List</title>
+    <title>Tabbed Course List with Links</title>
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -42,6 +42,13 @@
       li {
         margin-bottom: 5px;
       }
+      a {
+        color: #007bff;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
     </style>
   </head>
   <body>
@@ -62,31 +69,67 @@
       <ul id="course-list"></ul>
     </div>
 
-    <!-- JavaScript to handle tab switching and course display -->
+    <!-- JavaScript to handle tab switching and course display with links -->
     <script>
-      // Course data stored in arrays
+      // Course data with links
       const courses = {
         programming: [
-          "JavaScript for Beginners",
-          "Advanced Python Techniques",
-          "Web Development with React",
-          "Data Structures & Algorithms",
+          {
+            name: "JavaScript for Beginners",
+            url: "https://www.facebook.com/reel/8411547935616684/?sfnsn=wa&mibextid=6AJuK9",
+          },
+          {
+            name: "Advanced Python Techniques",
+            url: "https://www.facebook.com/reel/8411547935616684/?sfnsn=wa&mibextid=6AJuK9",
+          },
+          {
+            name: "Web Development with React",
+            url: "https://www.facebook.com/reel/8411547935616684/?sfnsn=wa&mibextid=6AJuK9",
+          },
+          {
+            name: "Data Structures & Algorithms",
+            url: "https://www.facebook.com/reel/8411547935616684/?sfnsn=wa&mibextid=6AJuK9",
+          },
         ],
         android: [
-          "Building Android Apps with Kotlin",
-          "Mastering Android Studio",
-          "UI/UX Design for Android",
-          "Integrating APIs in Android",
+          {
+            name: "Building Android Apps with Kotlin",
+            url: "https://www.facebook.com/reel/8411547935616684/?sfnsn=wa&mibextid=6AJuK9",
+          },
+          {
+            name: "Mastering Android Studio",
+            url: "https://www.facebook.com/reel/8411547935616684/?sfnsn=wa&mibextid=6AJuK9",
+          },
+          {
+            name: "UI/UX Design for Android",
+            url: "https://www.facebook.com/reel/8411547935616684/?sfnsn=wa&mibextid=6AJuK9",
+          },
+          {
+            name: "Integrating APIs in Android",
+            url: "https://www.facebook.com/reel/8411547935616684/?sfnsn=wa&mibextid=6AJuK9",
+          },
         ],
         "self-improvement": [
-          "Time Management Mastery",
-          "Productivity Hacks",
-          "Building Healthy Habits",
-          "Mindfulness & Meditation",
+          {
+            name: "Self Worth",
+            url: "https://www.facebook.com/reel/8411547935616684/?sfnsn=wa&mibextid=6AJuK9",
+          },
+          {
+            name: "Productivity Hacks",
+            url: "https://www.facebook.com/reel/8411547935616684/?sfnsn=wa&mibextid=6AJuK9",
+          },
+          {
+            name: "Building Healthy Habits",
+            url: "https://www.facebook.com/reel/8411547935616684/?sfnsn=wa&mibextid=6AJuK9",
+          },
+          {
+            name: "Mindfulness & Meditation",
+            url: "https://www.facebook.com/reel/8411547935616684/?sfnsn=wa&mibextid=6AJuK9",
+          },
         ],
       };
 
-      // Function to show the appropriate content and course list
+      // Function to show the appropriate content and course list with links
       function showContent(category) {
         // Update active tab
         document
@@ -99,12 +142,16 @@
         contentContainer.querySelector("h2").textContent =
           category.charAt(0).toUpperCase() + category.slice(1) + " Courses";
 
-        // Populate course list
+        // Populate course list with links
         const courseList = document.getElementById("course-list");
         courseList.innerHTML = "";
         courses[category].forEach((course) => {
           const li = document.createElement("li");
-          li.textContent = course;
+          const link = document.createElement("a");
+          link.textContent = course.name;
+          link.href = course.url;
+          link.target = "_blank"; // Opens link in a new tab
+          li.appendChild(link);
           courseList.appendChild(li);
         });
 
