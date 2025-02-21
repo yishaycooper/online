@@ -20,12 +20,6 @@
         margin-top: 20px;
       }
 
-      label {
-        display: block;
-        margin-bottom: 5px;
-        font-weight: bold;
-      }
-
       select {
         padding: 10px;
         font-size: 16px;
@@ -43,21 +37,22 @@
         margin-bottom: 5px;
       }
 
+      /* Set link color to black and remove default blue styles */
       a {
-        color: #007bff;
+        color: #000; /* Black color */
         text-decoration: none;
       }
 
+      /* Optional: Add a subtle underline effect on hover */
       a:hover {
         text-decoration: underline;
+        color: #333; /* Slightly darker shade on hover */
       }
     </style>
   </head>
   <body>
-    <h1>Select a Category to View Courses</h1>
+    <h2>Select a Category to View Courses</h2>
 
-    <!-- Dropdown Menu with Title -->
-    <label for="category-select">Choose your course:</label>
     <select id="category-select" onchange="showContent(this.value)">
       <option value="programming">Programming</option>
       <option value="android">Android</option>
