@@ -3,9 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tabbed Page</title>
+    <title>Tabbed Course List</title>
     <style>
-      /* Basic styling */
       body {
         font-family: Arial, sans-serif;
         margin: 0;
@@ -37,6 +36,12 @@
       .content.active {
         display: block;
       }
+      ul {
+        padding-left: 20px;
+      }
+      li {
+        margin-bottom: 5px;
+      }
     </style>
   </head>
   <body>
@@ -51,39 +56,67 @@
       </div>
     </div>
 
-    <!-- Content Sections -->
-    <div id="programming" class="content active">
-      <h2>Programming</h2>
-      <p>Learn the latest programming languages and techniques.</p>
+    <!-- Content Container -->
+    <div id="content-container" class="content active">
+      <h2>Programming Courses</h2>
+      <ul id="course-list"></ul>
     </div>
 
-    <div id="android" class="content">
-      <h2>Android</h2>
-      <p>Build amazing Android apps and master mobile development.</p>
-    </div>
-
-    <div id="self-improvement" class="content">
-      <h2>Self Improvement</h2>
-      <p>Enhance your productivity, mindset, and personal growth.</p>
-    </div>
-
-    <!-- JavaScript to handle tab switching -->
+    <!-- JavaScript to handle tab switching and course display -->
     <script>
-      function showContent(id) {
-        // Hide all content sections
-        document
-          .querySelectorAll(".content")
-          .forEach((content) => content.classList.remove("active"));
+      // Course data stored in arrays
+      const courses = {
+        programming: [
+          "JavaScript for Beginners",
+          "Advanced Python Techniques",
+          "Web Development with React",
+          "Data Structures & Algorithms",
+        ],
+        android: [
+          "Building Android Apps with Kotlin",
+          "Mastering Android Studio",
+          "UI/UX Design for Android",
+          "Integrating APIs in Android",
+        ],
+        "self-improvement": [
+          "Time Management Mastery",
+          "Productivity Hacks",
+          "Building Healthy Habits",
+          "Mindfulness & Meditation",
+        ],
+      };
 
-        // Remove active class from all tabs
+      // Function to show the appropriate content and course list
+      function showContent(category) {
+        // Update active tab
         document
           .querySelectorAll(".tab")
           .forEach((tab) => tab.classList.remove("active"));
-
-        // Show the selected content and set the active tab
-        document.getElementById(id).classList.add("active");
         event.currentTarget.classList.add("active");
+
+        // Update content heading
+        const contentContainer = document.getElementById("content-container");
+        contentContainer.querySelector("h2").textContent =
+          category.charAt(0).toUpperCase() + category.slice(1) + " Courses";
+
+        // Populate course list
+        const courseList = document.getElementById("course-list");
+        courseList.innerHTML = "";
+        courses[category].forEach((course) => {
+          const li = document.createElement("li");
+          li.textContent = course;
+          courseList.appendChild(li);
+        });
+
+        // Display the content container
+        document
+          .querySelectorAll(".content")
+          .forEach((content) => content.classList.remove("active"));
+        contentContainer.classList.add("active");
       }
+
+      // Initial load
+      showContent("programming");
     </script>
   </body>
 </html>
