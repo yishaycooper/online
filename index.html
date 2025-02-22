@@ -122,18 +122,18 @@
         ],
       };
 
-      // Function to show the appropriate content and course list with links
+      // Function to show the appropriate content and course list with numbered links
       function showContent(category) {
         const contentContainer = document.getElementById("content-container");
         contentContainer.querySelector("h2").textContent =
-          category.charAt(0).toUpperCase() + category.slice(1) + " Course";
+          category.charAt(0).toUpperCase() + category.slice(1) + " Courses";
 
         const courseList = document.getElementById("course-list");
         courseList.innerHTML = "";
-        courses[category].forEach((course) => {
+        courses[category].forEach((course, index) => {
           const li = document.createElement("li");
           const link = document.createElement("a");
-          link.textContent = course.name;
+          link.textContent = `${index + 1}. ${course.name}`; // Add numbering to the course name
           link.href = course.url;
           link.target = "_self";
           li.appendChild(link);
