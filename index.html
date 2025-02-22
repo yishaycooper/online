@@ -3,14 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Left-Aligned Dropdown Course List with Links</title>
+    <title>Gradient Background Course List</title>
     <style>
+      /* Apply a dark blue to dark green gradient background */
       body {
         font-family: Arial, sans-serif;
         margin: 0;
         padding: 20px;
-        background-color: #f5f5f5;
-        text-align: left; /* Align everything to the left */
+        background: linear-gradient(135deg, #002244, #004d40);
+        color: white; /* Ensure text is readable on dark background */
+        text-align: left;
+        min-height: 100vh;
       }
 
       h2 {
@@ -22,10 +25,14 @@
         font-size: 16px;
         max-width: 300px;
         margin-bottom: 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #004d40;
+        color: white;
       }
 
       #content-container {
-        max-width: 600px; /* Set a max width for better readability */
+        max-width: 600px;
       }
 
       ul {
@@ -34,17 +41,17 @@
       }
 
       li {
-        margin-bottom: 5px;
+        margin-bottom: 8px;
       }
 
       a {
-        color: #000; /* Black color */
+        color: #80deea; /* Light cyan for contrast */
         text-decoration: none;
       }
 
       a:hover {
         text-decoration: underline;
-        color: #333; /* Slightly darker shade on hover */
+        color: #b2ebf2;
       }
     </style>
   </head>
@@ -55,15 +62,12 @@
       <option value="self-improvement">Self Improvement</option>
     </select>
 
-    <!-- Content Container -->
     <div id="content-container">
       <h2>Programming Courses</h2>
       <ul id="course-list"></ul>
     </div>
 
-    <!-- JavaScript to handle dropdown selection and course display with links -->
     <script>
-      // Course data with links
       const courses = {
         programming: [
           {
@@ -121,7 +125,6 @@
         ],
       };
 
-      // Function to show the appropriate content and course list with numbered links
       function showContent(category) {
         const contentContainer = document.getElementById("content-container");
         contentContainer.querySelector("h2").textContent =
@@ -132,7 +135,7 @@
         courses[category].forEach((course, index) => {
           const li = document.createElement("li");
           const link = document.createElement("a");
-          link.textContent = `${index + 1}. ${course.name}`; // Add numbering to the course name
+          link.textContent = `${index + 1}. ${course.name}`;
           link.href = course.url;
           link.target = "_self";
           li.appendChild(link);
@@ -140,7 +143,6 @@
         });
       }
 
-      // Initial load with the default category
       showContent("programming");
     </script>
   </body>
